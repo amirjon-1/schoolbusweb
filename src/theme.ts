@@ -28,6 +28,3 @@ export const theme = {
     xl: '0.75rem',
   },
 } as const
-
-export const APP_STORE_URL = 'https://example.com/appstore'
-export const GOOGLE_PLAY_URL = 'https://example.com/play'
