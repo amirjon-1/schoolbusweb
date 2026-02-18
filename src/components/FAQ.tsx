@@ -17,7 +17,7 @@ const items = [
   },
   {
     question: 'What if my school isn\'t on SchoolBus yet?',
-    answer: 'We\'re adding campuses over time. Join the waitlist and we\'ll notify you when we launch at your school. You can also tell your student government or transportation office to reach out.',
+    answer: 'We\'re adding campuses over time. We\'ll notify you when we launch at your school. You can also tell your student government or transportation office to reach out.',
   },
   {
     question: 'Is there a safety feature if something goes wrong?',

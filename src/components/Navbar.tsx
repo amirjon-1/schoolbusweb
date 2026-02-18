@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { APP_STORE_URL } from '../theme'
+import { useComingSoon } from '../context/ComingSoonContext'
 
 const navLinks = [
   { label: 'How it works', href: '#how-it-works' },
   { label: 'Features', href: '#features' },
   { label: 'Safety', href: '#safety' },
-  { label: 'Testimonials', href: '#testimonials' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -15,6 +14,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const reduceMotion = useReducedMotion()
+  const { openModal } = useComingSoon()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -63,13 +63,14 @@ export function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href={APP_STORE_URL}
+          <button
+            type="button"
+            onClick={openModal}
             className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-4 py-2.5 text-sm font-semibold hover:bg-neutral-750 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2"
-            aria-label="Download on the App Store"
+            aria-label="Get the app — coming soon"
           >
             Get the App
-          </a>
+          </button>
         </div>
 
         <button
@@ -104,13 +105,16 @@ export function Navbar() {
             </li>
           ))}
           <li className="pt-2">
-            <a
-              href={APP_STORE_URL}
-              onClick={() => setMobileOpen(false)}
-              className="block text-center rounded-2xl bg-brand-yellow text-neutral-900 py-3 font-semibold hover:bg-brand-yellow-light focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-dark"
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false)
+                openModal()
+              }}
+              className="w-full text-center rounded-2xl bg-brand-yellow text-neutral-900 py-3 font-semibold hover:bg-brand-yellow-light focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow-dark"
             >
               Get the App
-            </a>
+            </button>
           </li>
         </ul>
       </div>
