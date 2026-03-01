@@ -22,13 +22,13 @@ const features = [
   },
   {
     icon: Wallet,
-    title: 'Driver earnings for students',
-    description: 'Drive when it fits your schedule. Earn on your way to class or between shifts.',
+    title: 'Driver Operations',
+    description: 'Drive when it fits your schedule. Drive on your way to class or errands.',
   },
   {
     icon: Receipt,
-    title: 'Upfront pricing & split fare',
-    description: 'See the price before you request. Splitting with friends? One tap to divide the fare.',
+    title: 'Upfront fees & split fees',
+    description: 'See the fee before you request. Splitting with friends? One tap to divide the fee.',
   },
   {
     icon: Star,
@@ -37,8 +37,8 @@ const features = [
   },
   {
     icon: MessageCircle,
-    title: 'Real-time ETAs & in-app chat',
-    description: 'Live tracking and ETA updates. Message your driver or rider without sharing your number.',
+    title: 'In-app chat',
+    description: 'Get ETA and updates through in-app chat. Message your driver or rider without sharing your number.',
   },
 ]
 
