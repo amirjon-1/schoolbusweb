@@ -11,12 +11,12 @@ const steps = [
   {
     icon: Users,
     title: 'Match',
-    description: 'We connect you with verified student drivers on your campus. See profile and rating before you go.',
+    description: 'We connect you with verified student drivers on your campus. See profile and gpa rating before you go.',
   },
   {
     icon: Car,
     title: 'Ride',
-    description: 'Get real-time ETA, chat in-app, and ride with a classmate. Pay upfront—split fare with friends if you want.',
+    description: 'Chat in-app, and ride with a classmate. Cover on your own or split fees with friends as you want.',
   },
 ]
 

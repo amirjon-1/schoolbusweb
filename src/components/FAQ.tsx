@@ -8,21 +8,21 @@ const items = [
     answer: 'Every driver signs up with a valid .edu email from a school we support. We verify that email before they can accept rides. No .edu, no drive.',
   },
   {
-    question: 'Can I schedule a ride in advance?',
-    answer: 'Yes. When you request a ride, you can choose "Now" or "Schedule for later." Pick your date and time—great for early flights, late classes, or grocery runs.',
+    question: 'Can I schedule an instant ride?',
+    answer: 'No. We do not provide instant connect requests. You must schedule a ride in advance. Pick your date and time—great for early flights, late classes, or grocery runs.',
   },
   {
     question: 'How does pricing work?',
-    answer: 'You see the full fare before you request. Pricing is based on distance and demand. You can split the fare with friends in the app before or after the ride.',
+    answer: 'We are a carpool app and do not charge fares. The fee showed and agreed upon by the driver and rider is to offset the cost of the trip.',
   },
   {
     question: 'What if my school isn\'t on SchoolBus yet?',
-    answer: 'We\'re adding campuses over time. We\'ll notify you when we launch at your school. You can also tell your student government or transportation office to reach out.',
+    answer: 'We\'re adding campuses over time. We\'ll notify you when we launch at your school. You can also tell your student government or transportation office to reach out to us at hiroshi@schoolbus.cc.',
   },
-  {
-    question: 'Is there a safety feature if something goes wrong?',
-    answer: 'Yes. In the app you can share your trip with a contact, see real-time location, and use in-app emergency options. Our support team is available 24/7 for safety-related issues.',
-  },
+  // {
+  //   question: 'Is there a safety feature if something goes wrong?',
+  //   answer: 'Yes. In the app you can share your trip with a contact, see real-time location, and use in-app emergency options. Our support team is available 24/7 for safety-related issues.',
+  // },
 ]
 
 export function FAQ() {

@@ -1,6 +1,6 @@
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
-import { ShieldCheck, Star, GraduationCap, AlertCircle } from 'lucide-react'
+import { ShieldCheck, Star, GraduationCap, Users } from 'lucide-react'
 
 const points = [
   {
@@ -19,9 +19,9 @@ const points = [
     description: 'Matching stays within your school. Familiar faces, same community.',
   },
   {
-    icon: AlertCircle,
-    title: 'SOS & support',
-    description: 'In-app emergency options and 24/7 support. We take safety seriously.',
+    icon: Users,
+    title: 'For Students, By Students',
+    description: 'Made by students, for students.',
   },
 ]
 

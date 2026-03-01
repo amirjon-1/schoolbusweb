@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useComingSoon } from '../context/ComingSoonContext'
+import { FramedPhoneSlider } from './FramedPhoneSlider'
 
 const container = {
   hidden: { opacity: 0 },
@@ -79,7 +80,7 @@ export function Hero() {
               aria-label="Google Play — coming soon"
             >
               <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden>
-                <path fill="currentColor" d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l6.54-6.54 4.22 4.22 2.27-2.27-2.27-2.27-2.27 2.27-2.27-2.27 2.27-2.27 2.27 2.27 2.27-2.27-2.27-2.27 2.27-2.27 2.27 2.27 4.22-4.22 2.27 2.27-2.27 2.27 2.27 2.27-2.27 2.27-6.76-6.76zM20.16 3.15c.5.24.84.76.84 1.35v17c0 .59-.34 1.11-.84 1.35L13.69 12 20.16 3.15zM6.05 2.66l10.76 10.76-4.22 4.22L6.05 2.66z" />
+                <path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z" />
               </svg>
               Google Play
             </button>
@@ -87,7 +88,7 @@ export function Hero() {
         </motion.div>
 
         {/* Phone mockup */}
-        <motion.div
+        {/* <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: reduceMotion ? 0 : 0.4, duration: 0.5 }}
@@ -117,6 +118,40 @@ export function Hero() {
                 </div>
               </div>
             </div>
+          </motion.div>
+        </motion.div> */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: reduceMotion ? 0 : 0.4, duration: 0.5 }}
+          className="flex-1 flex justify-center"
+        >
+          <motion.div
+            animate={reduceMotion ? {} : { y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative w-[300px] sm:w-[340px] lg:w-[360px]"
+          >
+            <FramedPhoneSlider
+              reduceMotion={!!reduceMotion}
+              autoPlayMs={reduceMotion ? 0 : 4500}
+              slides={[
+                // {
+                //   type: "video",
+                //   src: "/Fieldtrips.MP4",
+                //   alt: "App demo video",
+                //   poster: "/Activerides.png", // optional: nice first frame
+                //   muted: true,
+                //   loop: true,
+                //   autoPlay: true,
+                //   controls: false,
+                // },
+                { type: "image", src: "/Fieldtrips.png", alt: 'Field trips screen' },
+                { type: "image", src: '/Pastrides.png', alt: 'Past rides screen' },
+                { type: "image", src: '/Activerides.png', alt: 'Active rides screen' },
+                { type: "image", src: '/inbox.png', alt: 'Inbox screen' },
+              ]}
+              className="drop-shadow-2xl"
+            />
           </motion.div>
         </motion.div>
       </div>
