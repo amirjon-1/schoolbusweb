@@ -5,11 +5,11 @@ import { Footer } from '../components/Footer'
 const content = [
   {
     title: 'SchoolBus Terms and Conditions',
-    body: 'These Terms and Conditions (“Terms”) govern your access to and use of the SchoolBus mobile application and related services (the “Service”), provided by SchoolBus Campus Corp (“SchoolBus,” “we,” “us,” “our”). By creating an account or using the Service, you agree to these Terms. If you do not agree, do not use the Service.',
+    body: 'These Terms and Conditions (“Terms”) govern your access to and use of the SchoolBus mobile application and related services (the “Service”), provided by SchoolBus Campus Corp (“SchoolBus,” “we,” “us,” “our”). By creating an account or using the Service, you agree to these Terms.\n\nIf you do not agree, do not use the Service.',
   },
   {
     title: '1. What SchoolBus Is (and is not)',
-    body: 'SchoolBus is a student-only social carpool and cost-sharing platform that helps users discover, post, and coordinate carpools.\n\n• Drivers are not employees, agents, or representatives of SchoolBus.\n• SchoolBus does not dispatch vehicles, employ drivers, set fares, or guarantee ride availability.\n• Any carpool arrangement is a private, peer-to-peer arrangement between users.',
+    body: 'SchoolBus is a campus social carpool and cost-sharing platform that helps users discover, post, and coordinate carpools.\n\n• Drivers are not employees, agents, or representatives of SchoolBus.\n• Drivers are students, faculty, or staff of a college or university.\n• SchoolBus does not dispatch vehicles, employ drivers, set fares, or guarantee ride availability.\n• Schoolbus is not affiliated with any college or university.\n• Any carpool arrangement is a private, peer-to-peer arrangement between users.',
   },
   {
     title: '2. Eligibility',
@@ -97,7 +97,7 @@ export function Terms() {
       </header>
       <main className="flex-1 mx-auto w-full max-w-[720px] px-4 sm:px-6 py-10">
         <h1 className="text-3xl font-bold text-neutral-900 mb-2">Terms and Conditions</h1>
-        <p className="text-neutral-500 text-sm mb-10">Last updated: Feb 15, 2026</p>
+        <p className="text-neutral-500 text-sm mb-10">Last updated: Apr 24, 2026</p>
         <div className="space-y-8">
           {content.map((section) => (
             <section key={section.title}>
