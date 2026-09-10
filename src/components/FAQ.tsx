@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, useInView, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 const items = [
