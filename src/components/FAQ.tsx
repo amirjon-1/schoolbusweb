@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { motion, useInView, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 const items = [
@@ -16,13 +16,9 @@ const items = [
     answer: 'We are a carpool app and do not charge fares. The fee showed and agreed upon by the driver and rider is to offset the cost of the trip.',
   },
   {
-    question: 'What if my school isn\'t on SchoolBus yet?',
-    answer: 'We\'re adding campuses over time. We\'ll notify you when we launch at your school. You can also tell your student government or transportation office to reach out to us at hiroshi@schoolbus.cc.',
+    question: "What if my school isn't on SchoolBus yet?",
+    answer: "We're adding campuses over time. We'll notify you when we launch at your school. You can also tell your student government or transportation office to reach out to us at hiroshi@schoolbus.cc.",
   },
-  // {
-  //   question: 'Is there a safety feature if something goes wrong?',
-  //   answer: 'Yes. In the app you can share your trip with a contact, see real-time location, and use in-app emergency options. Our support team is available 24/7 for safety-related issues.',
-  // },
 ]
 
 export function FAQ() {
@@ -35,38 +31,45 @@ export function FAQ() {
     <section
       id="faq"
       ref={ref}
-      className="py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 bg-neutral-50"
+      className="relative py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 overflow-hidden bg-white"
       aria-labelledby="faq-heading"
     >
-      <div className="mx-auto max-w-[720px]">
+
+      <div className="relative mx-auto max-w-[680px]">
         <motion.h2
           id="faq-heading"
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="text-3xl sm:text-4xl font-bold text-neutral-900 text-center mb-4"
+          transition={{ duration: 0.45 }}
+          className="font-display text-4xl sm:text-5xl text-neutral-900 text-center tracking-tight mb-3"
         >
           Frequently asked questions
         </motion.h2>
         <motion.p
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.05 }}
-          className="text-neutral-600 text-center mb-12"
+          transition={{ duration: 0.45, delay: 0.06 }}
+          className="text-neutral-500 text-center mb-12 max-w-md mx-auto"
         >
           Quick answers to common questions.
         </motion.p>
 
-        <div className="space-y-2" role="list">
+        <div className="space-y-2.5" role="list">
           {items.map((faq, i) => (
-            <FAQItem
+            <motion.div
               key={i}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-              reduceMotion={!!reduceMotion}
-            />
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.08 + i * 0.07 }}
+            >
+              <FAQItem
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                reduceMotion={!!reduceMotion}
+              />
+            </motion.div>
           ))}
         </div>
       </div>
@@ -87,11 +90,13 @@ function FAQItem({
   onToggle: () => void
   reduceMotion: boolean
 }) {
-  const contentRef = useRef<HTMLDivElement>(null)
-
   return (
     <div
-      className="rounded-2xl border border-neutral-200 bg-white shadow-soft overflow-hidden"
+      className={`rounded-2xl border bg-white/80 backdrop-blur-sm overflow-hidden transition-all duration-200 ${
+        isOpen
+          ? 'border-brand-yellow/40 shadow-[0_4px_24px_-4px_rgba(250,204,21,0.15)]'
+          : 'border-neutral-200/70 shadow-soft hover:border-neutral-300'
+      }`}
       role="listitem"
     >
       <button
@@ -100,13 +105,16 @@ function FAQItem({
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${question.slice(0, 20)}`}
         id={`faq-question-${question.slice(0, 20)}`}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-neutral-900 hover:bg-neutral-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-inset"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-neutral-900 hover:bg-neutral-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-inset transition-colors"
       >
-        {question}
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-neutral-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          aria-hidden
-        />
+        <span>{question}</span>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.25, ease: 'easeInOut' }}
+          className="shrink-0"
+        >
+          <ChevronDown className={`h-5 w-5 transition-colors ${isOpen ? 'text-brand-yellow-dark' : 'text-neutral-400'}`} aria-hidden />
+        </motion.div>
       </button>
       <motion.div
         id={`faq-answer-${question.slice(0, 20)}`}
@@ -114,12 +122,10 @@ function FAQItem({
         aria-labelledby={`faq-question-${question.slice(0, 20)}`}
         initial={false}
         animate={{ height: isOpen ? 'auto' : 0 }}
-        transition={reduceMotion ? { duration: 0.01 } : { duration: 0.3, ease: 'easeInOut' }}
+        transition={reduceMotion ? { duration: 0.01 } : { duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
         className="overflow-hidden"
       >
-        <div ref={contentRef} className="px-5 pb-4 pt-0">
-          <p className="text-neutral-600 text-sm leading-relaxed">{answer}</p>
-        </div>
+        <p className="px-5 pb-5 pt-1 text-neutral-500 text-sm leading-relaxed">{answer}</p>
       </motion.div>
     </div>
   )

@@ -5,16 +5,19 @@ import { MapPin, Users, Car } from 'lucide-react'
 const steps = [
   {
     icon: MapPin,
+    num: '01',
     title: 'Request',
     description: 'Set your pickup and drop-off. Choose now or schedule for later—classes, airport, groceries.',
   },
   {
     icon: Users,
+    num: '02',
     title: 'Match',
-    description: 'We connect you with verified student drivers on your campus. See profile and gpa rating before you go.',
+    description: 'We connect you with verified student drivers on your campus. See profile and rating before you go.',
   },
   {
     icon: Car,
+    num: '03',
     title: 'Ride',
     description: 'Chat in-app, and ride with a classmate. Cover on your own or split fees with friends as you want.',
   },
@@ -29,48 +32,51 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       ref={ref}
-      className="py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 bg-neutral-50"
+      className="relative py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 overflow-hidden bg-white"
       aria-labelledby="how-it-works-heading"
     >
-      <div className="mx-auto max-w-[1200px]">
-        <motion.h2
-          id="how-it-works-heading"
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="text-3xl sm:text-4xl font-bold text-neutral-900 text-center mb-4"
-        >
-          How it works
-        </motion.h2>
-        <motion.p
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.05 }}
-          className="text-neutral-600 text-center max-w-2xl mx-auto mb-14"
-        >
-          Three steps to get where you need to go—or start earning as a driver.
-        </motion.p>
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+      <div className="relative mx-auto max-w-[1200px]">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45 }}
+          className="text-center mb-16"
+        >
+          <p className="text-sm font-semibold tracking-widest text-amber-500 uppercase mb-3">Simple as 1-2-3</p>
+          <h2
+            id="how-it-works-heading"
+            className="font-display text-4xl sm:text-5xl text-neutral-900 tracking-tight mb-3"
+          >
+            How it works
+          </h2>
+          <p className="text-neutral-500 max-w-xl mx-auto">
+            Three steps to get where you need to go—or start earning as a driver.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {steps.map((step, i) => (
             <motion.article
               key={step.title}
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 32 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
-              className="relative flex flex-col items-center text-center"
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
+              whileHover={reduceMotion ? {} : { y: -5, transition: { duration: 0.2 } }}
+              className="relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/70 p-7 shadow-[0_2px_40px_rgba(0,0,0,0.06),0_0_0_1px_rgba(255,255,255,0.7)] hover:bg-white/75 hover:shadow-[0_8px_40px_rgba(0,0,0,0.09)] transition-all duration-300"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-yellow text-neutral-900 shadow-soft mb-5">
-                <step.icon className="h-8 w-8" aria-hidden />
+              {/* Step number — top-right */}
+              <span className="absolute top-5 right-6 font-display text-5xl text-neutral-900/[0.06] select-none leading-none">
+                {step.num}
+              </span>
+
+              {/* Icon badge */}
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow shadow-[0_4px_16px_rgba(250,204,21,0.4)] mb-6">
+                <step.icon className="h-6 w-6 text-neutral-900" aria-hidden />
               </div>
-              {i < steps.length - 1 && (
-                <div
-                  className="hidden md:block absolute top-8 left-[calc(50%+3rem)] w-[calc(100%-4rem)] h-0.5 bg-neutral-200"
-                  aria-hidden
-                />
-              )}
-              <h3 className="text-xl font-bold text-neutral-900 mb-2">{step.title}</h3>
-              <p className="text-neutral-600">{step.description}</p>
+
+              <h3 className="font-display text-2xl text-neutral-900 mb-2">{step.title}</h3>
+              <p className="text-neutral-500 text-sm leading-relaxed">{step.description}</p>
             </motion.article>
           ))}
         </div>
