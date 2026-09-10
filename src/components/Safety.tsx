@@ -15,8 +15,8 @@ const sidePoints = [
   },
   {
     icon: Users,
-    title: 'For students, by students',
-    description: 'Built by people who ride it too.',
+    title: 'For the campus, by the campus',
+    description: 'Built by people who are part of it too.',
   },
 ]
 
@@ -47,7 +47,7 @@ export function Safety() {
             Safety &amp; trust
           </h2>
           <p className="text-neutral-500 max-w-xl mx-auto">
-            Only verified students. Transparent profiles. Ride with confidence.
+            Verified .edu members only. Transparent profiles. Ride with confidence.
           </p>
         </motion.div>
 
@@ -80,9 +80,9 @@ export function Safety() {
               </div>
             </div>
 
-            <h3 className="font-display text-3xl text-neutral-900 mb-3">Only verified students</h3>
+            <h3 className="font-display text-3xl text-neutral-900 mb-3">Verified .edu members only</h3>
             <p className="text-neutral-500 leading-relaxed">
-              .edu email required. No strangers — everyone you ride with is a student on your campus.
+              .edu email required. No strangers — everyone you ride with is part of your campus community.
             </p>
           </motion.div>
 

@@ -13,7 +13,7 @@ const steps = [
     icon: Users,
     num: '02',
     title: 'Match',
-    description: 'We connect you with verified student drivers on your campus. See profile and rating before you go.',
+    description: 'We connect you with verified campus community members. See profile and rating before you go.',
   },
   {
     icon: Car,

@@ -64,7 +64,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900/[0.07] border border-neutral-900/[0.10] text-neutral-600 font-medium text-sm mb-8"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow shrink-0" aria-hidden />
-            College-only rideshare
+            College Community Rideshare
           </motion.div>
 
           <motion.h1
@@ -74,14 +74,14 @@ export function Hero() {
           >
             Riders &amp;<br />drivers.
             <br />
-            <em className="not-italic text-amber-500">All students.</em>
+            <em className="not-italic text-amber-500">One community.</em>
           </motion.h1>
 
           <motion.p
             variants={item}
             className="text-neutral-500 text-base sm:text-lg max-w-md mb-10 leading-relaxed"
           >
-            Affordable rides between verified students across campus—and a lucrative side hustle for drivers.
+            Affordable rides between verified campus community members—and a lucrative side hustle for drivers.
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-3 mb-10">

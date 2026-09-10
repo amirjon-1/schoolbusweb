@@ -14,7 +14,7 @@ const riderFeatures = [
   {
     icon: GraduationCap,
     title: 'Campus-only matching',
-    description: 'Only students from your school. No randoms — just classmates you might see in the dining hall.',
+    description: 'Only .edu accounts from your school. No randoms — just people from your campus community.',
     large: true,
   },
   {

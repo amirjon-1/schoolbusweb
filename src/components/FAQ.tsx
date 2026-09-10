@@ -4,8 +4,8 @@ import { ChevronDown } from 'lucide-react'
 
 const items = [
   {
-    question: 'How do I know drivers are actually students?',
-    answer: 'Every driver signs up with a valid .edu email from a school we support. We verify that email before they can accept rides. No .edu, no drive.',
+    question: 'How do I know drivers are actually from my campus?',
+    answer: 'Every driver signs up with a valid .edu email from a school we support. We verify that email before they can accept rides — whether they\'re a student, faculty, or staff. No .edu, no drive.',
   },
   {
     question: 'Can I schedule an instant ride?',

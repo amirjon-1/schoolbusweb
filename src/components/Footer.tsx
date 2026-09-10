@@ -46,7 +46,7 @@ export function Footer() {
               Campus rides, made simple.
             </p>
             <p className="text-neutral-500 text-sm leading-relaxed mb-7 max-w-[320px]">
-              The campus carpool app built for students — only verified .edu accounts, no strangers, no surge pricing.
+              The campus carpool app for your whole campus community — students, faculty, and staff — only verified .edu accounts, no strangers, no surge pricing.
             </p>
 
             <div className="flex flex-wrap gap-3">
