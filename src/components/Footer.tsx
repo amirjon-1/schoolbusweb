@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useComingSoon } from '../context/ComingSoonContext'
 
@@ -31,7 +32,13 @@ export function Footer() {
       role="contentinfo"
     >
       {/* Main grid */}
-      <div className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6 pt-16 pb-10">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6 pt-16 pb-10"
+      >
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 md:gap-6 mb-14">
 
           {/* Brand column */}
@@ -46,7 +53,7 @@ export function Footer() {
               Campus rides, made simple.
             </p>
             <p className="text-neutral-500 text-sm leading-relaxed mb-7 max-w-[320px]">
-              The campus carpool app for your whole campus community — students, faculty, and staff — only verified .edu accounts, no strangers, no surge pricing.
+              The campus carpool app for your whole campus community: students, faculty, and staff. Only verified .edu accounts, no strangers, no surge pricing.
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -98,9 +105,9 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-neutral-200 pt-6">
-          <p className="text-neutral-400 text-sm">© {new Date().getFullYear()} SchoolBus — All rights reserved</p>
+          <p className="text-neutral-400 text-sm">© {new Date().getFullYear()} SchoolBus. All rights reserved</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Giant wordmark */}
       <div className="relative z-0 overflow-hidden pointer-events-none select-none" aria-hidden>

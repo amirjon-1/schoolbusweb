@@ -81,7 +81,7 @@ export function Hero() {
             variants={item}
             className="text-neutral-500 text-base sm:text-lg max-w-md mb-10 leading-relaxed"
           >
-            Affordable rides between verified campus community members—and a lucrative side hustle for drivers.
+            Affordable rides between verified campus community members, and a lucrative side hustle for drivers.
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-3 mb-10">
@@ -101,7 +101,7 @@ export function Hero() {
               type="button"
               onClick={openModal}
               className="inline-flex items-center gap-2.5 rounded-2xl bg-neutral-900 text-white px-7 py-4 font-semibold text-[0.9375rem] hover:scale-[1.03] hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.25)] active:scale-[0.97] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
-              aria-label="Google Play — coming soon"
+              aria-label="Google Play, coming soon"
             >
               <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden>
                 <path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z" />
@@ -295,7 +295,7 @@ export function Hero() {
       </div>
 
       {/* Fade into next section */}
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-neutral-50 to-transparent pointer-events-none z-20" aria-hidden />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-20" aria-hidden />
     </section>
   )
 }

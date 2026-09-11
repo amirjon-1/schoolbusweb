@@ -40,7 +40,7 @@ export function Navbar() {
         >
           <img
             src="/sblogo.png"
-            alt="SchoolBus — Campus rides, made simple"
+            alt="SchoolBus: Campus rides, made simple"
             className="h-9 w-auto transition-all duration-300 [mix-blend-mode:multiply]"
             width={120}
             height={36}

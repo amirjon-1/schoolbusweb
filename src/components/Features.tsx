@@ -1,178 +1,144 @@
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
-import type { LucideIcon } from 'lucide-react'
-import {
-  GraduationCap,
-  CalendarClock,
-  Wallet,
-  Receipt,
-  Star,
-  MessageCircle,
-} from 'lucide-react'
+import { motion } from 'framer-motion'
+import { GraduationCap, TrendingUp, Lock } from 'lucide-react'
 
-const riderFeatures = [
-  {
-    icon: GraduationCap,
-    title: 'Campus-only matching',
-    description: 'Only .edu accounts from your school. No randoms — just people from your campus community.',
-    large: true,
-  },
-  {
-    icon: CalendarClock,
-    title: 'Scheduled rides',
-    description: 'Book ahead, set it and forget it.',
-  },
-  {
-    icon: Receipt,
-    title: 'Upfront & split fees',
-    description: 'See the price, split with friends.',
-  },
-]
-
-const driverFeatures = [
-  {
-    icon: Wallet,
-    title: 'Driver operations',
-    description: 'Drive when it fits your schedule — on your way to class or errands.',
-    large: true,
-  },
-  {
-    icon: Star,
-    title: 'Ratings & verification',
-    description: 'Verified with a .edu email.',
-  },
-  {
-    icon: MessageCircle,
-    title: 'In-app chat',
-    description: 'ETAs without sharing numbers.',
-  },
-]
-
-function FeatureCard({
-  icon: Icon,
-  title,
-  description,
-  large = false,
-  dark = false,
-  delay,
-  inView,
-  reduceMotion,
-}: {
-  icon: LucideIcon
-  title: string
-  description: string
-  large?: boolean
-  dark?: boolean
-  delay: number
-  inView: boolean
-  reduceMotion: boolean | null
-}) {
-  const glass = 'bg-white/50 border border-amber-200/30 shadow-[inset_0_1.5px_0_rgba(255,255,255,0.95),0_12px_48px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.98),0_20px_56px_rgba(0,0,0,0.08)]'
-
-  return (
-    <motion.article
-      initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      whileHover={reduceMotion ? {} : { y: -5, transition: { type: 'spring', stiffness: 300, damping: 24 } }}
-      className={`relative rounded-3xl backdrop-blur-2xl cursor-default transition-shadow duration-300 ${glass} ${large ? 'p-8' : 'p-6'}`}
-    >
-      <div
-        className={`flex h-12 w-12 items-center justify-center rounded-2xl mb-5 ${
-          dark
-            ? 'bg-neutral-900 shadow-[0_4px_16px_rgba(0,0,0,0.22)]'
-            : 'bg-brand-yellow shadow-[0_4px_16px_rgba(250,204,21,0.40)]'
-        }`}
-      >
-        <Icon className={`h-6 w-6 ${dark ? 'text-brand-yellow' : 'text-neutral-900'}`} aria-hidden />
-      </div>
-
-      <h3 className={`font-display text-neutral-900 mb-2 ${large ? 'text-2xl sm:text-[1.65rem]' : 'text-xl'}`}>
-        {title}
-      </h3>
-      <p className={`text-neutral-500 leading-relaxed ${large ? 'text-base' : 'text-sm'}`}>
-        {description}
-      </p>
-    </motion.article>
-  )
-}
+const EASE = [0.25, 0.1, 0.25, 1] as const
 
 export function Features() {
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  const reduceMotion = useReducedMotion()
-
   return (
     <section
       id="features"
-      ref={ref}
-      className="relative py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 overflow-hidden bg-white"
+      className="py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 bg-white"
       aria-labelledby="features-heading"
     >
-      <div className="relative mx-auto max-w-[1200px]">
-        {/* Header */}
+      <div className="mx-auto max-w-[1200px]">
+
+        {/* Left-aligned editorial header */}
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.45 }}
-          className="text-center mb-14"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="mb-10 max-w-xl"
         >
           <p className="text-sm font-semibold tracking-widest text-amber-500 uppercase mb-3">
-            No Ubers. No strangers. No surge.
+            What makes it different
           </p>
           <h2
             id="features-heading"
             className="font-display text-4xl sm:text-5xl text-neutral-900 tracking-tight"
           >
-            Built for campus life
+            Everything campus rides should be
           </h2>
         </motion.div>
 
-        {/* Two-column feature grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
-          {/* For riders */}
-          <div className="flex flex-col gap-4">
-            <motion.p
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-sm text-neutral-400 font-medium"
-            >
-              For riders
-            </motion.p>
+        {/* Bento grid — row 1: wide dark + screenshot; row 2: yellow + wide dark with screenshot */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-            <FeatureCard
-              {...riderFeatures[0]}
-              delay={0.15} inView={inView} reduceMotion={reduceMotion} dark={false}
-            />
-
-            <div className="grid grid-cols-2 gap-4">
-              <FeatureCard {...riderFeatures[1]} delay={0.22} inView={inView} reduceMotion={reduceMotion} dark={false} />
-              <FeatureCard {...riderFeatures[2]} delay={0.28} inView={inView} reduceMotion={reduceMotion} dark={false} />
+          {/* Card 1 — "Only people from your school" (dark, 2/3 width) */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: 0.08, ease: EASE }}
+            className="md:col-span-2 bg-neutral-800 rounded-3xl p-8 sm:p-10 flex flex-col justify-between min-h-[280px]"
+          >
+            <div>
+              <span className="inline-flex items-center gap-2 bg-brand-yellow/15 border border-brand-yellow/20 text-brand-yellow text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                <GraduationCap className="h-3.5 w-3.5" aria-hidden />
+                .edu verified only
+              </span>
+              <h3 className="font-display text-3xl sm:text-[2.5rem] text-white leading-snug mb-3">
+                Only people<br />from your school.
+              </h3>
+              <p className="text-neutral-400 text-sm leading-relaxed max-w-sm">
+                Every driver and rider verifies a .edu email from your campus before their first trip. No anonymous accounts, no strangers from the internet.
+              </p>
             </div>
-          </div>
-
-          {/* For drivers */}
-          <div className="flex flex-col gap-4">
-            <motion.p
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.12 }}
-              className="text-sm text-neutral-400 font-medium"
-            >
-              For drivers
-            </motion.p>
-
-            <FeatureCard
-              {...driverFeatures[0]}
-              delay={0.20} inView={inView} reduceMotion={reduceMotion} dark
-            />
-
-            <div className="grid grid-cols-2 gap-4">
-              <FeatureCard {...driverFeatures[1]} delay={0.27} inView={inView} reduceMotion={reduceMotion} dark />
-              <FeatureCard {...driverFeatures[2]} delay={0.33} inView={inView} reduceMotion={reduceMotion} dark />
+            <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/[0.08]">
+              {['.edu required', 'Campus-scoped matching', 'Rated by peers'].map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-white/[0.06] border border-white/10 text-neutral-400 text-xs px-3 py-1.5 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
-          </div>
+          </motion.div>
+
+          {/* Card 2 — Browse campus rides (Fieldtrips screenshot) */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: 0.14, ease: EASE }}
+            className="bg-white rounded-3xl overflow-hidden flex flex-col min-h-[320px]"
+          >
+            <div className="px-6 pt-6 pb-3 shrink-0">
+              <h3 className="font-display text-xl text-neutral-900 mb-1">
+                Browse campus rides
+              </h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
+                Popular routes and available drivers near you.
+              </p>
+            </div>
+            <div className="flex-1 flex items-end justify-center px-4 overflow-hidden">
+              <img
+                src="/Fieldtrips.png"
+                alt="SchoolBus app showing campus ride map"
+                className="w-full max-w-[200px] object-contain drop-shadow-xl"
+              />
+            </div>
+          </motion.div>
+
+          {/* Card 3 — Earn between classes (yellow) */}
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: 0.2, ease: EASE }}
+            className="bg-amber-200 rounded-3xl p-6 sm:p-8 flex flex-col justify-between min-h-[220px]"
+          >
+            <div>
+              <TrendingUp className="h-6 w-6 text-neutral-900/40 mb-5" aria-hidden />
+              <h3 className="font-display text-2xl text-neutral-900 mb-2">
+                Earn between classes
+              </h3>
+              <p className="text-neutral-800/70 text-sm leading-relaxed">
+                Drivers set their own routes and schedule. Your commute, your income.
+              </p>
+            </div>
+            <p className="text-neutral-900/30 text-xs mt-4 font-medium tracking-wide uppercase">
+              No vehicle minimums
+            </p>
+          </motion.div>
+
+          {/* Card 4 — Chat in-app (dark, 2/3 width, inbox screenshot) */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: 0.26, ease: EASE }}
+            className="md:col-span-2 bg-neutral-800 rounded-3xl overflow-hidden flex flex-col sm:flex-row min-h-[220px]"
+          >
+            <div className="px-8 py-8 flex flex-col justify-center sm:w-[55%] shrink-0">
+              <Lock className="h-5 w-5 text-neutral-500 mb-5" aria-hidden />
+              <h3 className="font-display text-2xl sm:text-3xl text-white mb-2 leading-snug">
+                Chat in-app,<br />not in texts.
+              </h3>
+              <p className="text-neutral-400 text-sm leading-relaxed">
+                Every ride gets its own thread. Coordinate ETAs and pickups without handing out your number.
+              </p>
+            </div>
+            <div className="flex-1 flex items-end justify-center px-6 overflow-hidden">
+              <img
+                src="/inbox.png"
+                alt="SchoolBus inbox showing ride conversations"
+                className="w-full max-w-[170px] object-contain drop-shadow-[0_-16px_40px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

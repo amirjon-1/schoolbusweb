@@ -1,13 +1,14 @@
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { MapPin, Users, Car } from 'lucide-react'
+
+const EASE = [0.25, 0.1, 0.25, 1] as const
 
 const steps = [
   {
     icon: MapPin,
     num: '01',
     title: 'Request',
-    description: 'Set your pickup and drop-off. Choose now or schedule for later—classes, airport, groceries.',
+    description: 'Set your pickup and drop-off. Choose now or schedule for later: classes, airport, groceries.',
   },
   {
     icon: Users,
@@ -24,54 +25,51 @@ const steps = [
 ]
 
 export function HowItWorks() {
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  const reduceMotion = useReducedMotion()
-
   return (
     <section
       id="how-it-works"
-      ref={ref}
-      className="relative py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 overflow-hidden bg-white"
+      className="py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 bg-white"
       aria-labelledby="how-it-works-heading"
     >
+      <div className="mx-auto max-w-[1200px]">
 
-      <div className="relative mx-auto max-w-[1200px]">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.45 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="mb-12 max-w-xl"
         >
-          <p className="text-sm font-semibold tracking-widest text-amber-500 uppercase mb-3">Simple as 1-2-3</p>
+          <p className="text-sm font-semibold tracking-widest text-amber-500 uppercase mb-3">
+            Simple as 1-2-3
+          </p>
           <h2
             id="how-it-works-heading"
-            className="font-display text-4xl sm:text-5xl text-neutral-900 tracking-tight mb-3"
+            className="font-display text-4xl sm:text-5xl text-neutral-900 tracking-tight"
           >
             How it works
           </h2>
-          <p className="text-neutral-500 max-w-xl mx-auto">
-            Three steps to get where you need to go—or start earning as a driver.
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-3 gap-5">
           {steps.map((step, i) => (
             <motion.article
               key={step.title}
-              initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
-              whileHover={reduceMotion ? {} : { y: -5, transition: { duration: 0.2 } }}
-              className="relative rounded-3xl bg-white/60 backdrop-blur-xl border border-white/70 p-7 shadow-[0_2px_40px_rgba(0,0,0,0.06),0_0_0_1px_rgba(255,255,255,0.7)] hover:bg-white/75 hover:shadow-[0_8px_40px_rgba(0,0,0,0.09)] transition-all duration-300"
+              initial={{ opacity: 0, y: 32, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: 0.08 + i * 0.1, ease: EASE }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="relative bg-white rounded-3xl border border-neutral-100 p-7 shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow duration-300 overflow-hidden"
             >
-              {/* Step number — top-right */}
-              <span className="absolute top-5 right-6 font-display text-5xl text-neutral-900/[0.06] select-none leading-none">
+              <span
+                className="absolute top-5 right-6 font-display text-6xl leading-none text-neutral-900/[0.05] select-none pointer-events-none"
+                aria-hidden
+              >
                 {step.num}
               </span>
 
-              {/* Icon badge */}
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow shadow-[0_4px_16px_rgba(250,204,21,0.4)] mb-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow shadow-[0_4px_16px_rgba(250,204,21,0.35)] mb-6">
                 <step.icon className="h-6 w-6 text-neutral-900" aria-hidden />
               </div>
 

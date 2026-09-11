@@ -1,15 +1,15 @@
-import { useState, useRef } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 const items = [
   {
     question: 'How do I know drivers are actually from my campus?',
-    answer: 'Every driver signs up with a valid .edu email from a school we support. We verify that email before they can accept rides — whether they\'re a student, faculty, or staff. No .edu, no drive.',
+    answer: 'Every driver signs up with a valid .edu email from a school we support. We verify that email before they can accept rides, whether they\'re a student, faculty, or staff. No .edu, no drive.',
   },
   {
     question: 'Can I schedule an instant ride?',
-    answer: 'No. We do not provide instant connect requests. You must schedule a ride in advance. Pick your date and time—great for early flights, late classes, or grocery runs.',
+    answer: 'No. We do not provide instant connect requests. You must schedule a ride in advance. Pick your date and time, great for early flights, late classes, or grocery runs.',
   },
   {
     question: 'How does pricing work?',
@@ -21,34 +21,33 @@ const items = [
   },
 ]
 
+const EASE = [0.25, 0.1, 0.25, 1] as const
+
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  const reduceMotion = useReducedMotion()
 
   return (
     <section
       id="faq"
-      ref={ref}
       className="relative py-[clamp(4rem,8vw,6rem)] px-4 sm:px-6 overflow-hidden bg-white"
       aria-labelledby="faq-heading"
     >
-
       <div className="relative mx-auto max-w-[680px]">
         <motion.h2
           id="faq-heading"
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.45 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.45, ease: EASE }}
           className="font-display text-4xl sm:text-5xl text-neutral-900 text-center tracking-tight mb-3"
         >
           Frequently asked questions
         </motion.h2>
         <motion.p
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.45, delay: 0.06 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.45, delay: 0.06, ease: EASE }}
           className="text-neutral-500 text-center mb-12 max-w-md mx-auto"
         >
           Quick answers to common questions.
@@ -58,16 +57,16 @@ export function FAQ() {
           {items.map((faq, i) => (
             <motion.div
               key={i}
-              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.08 + i * 0.07 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: 0.05 + i * 0.07, ease: EASE }}
             >
               <FAQItem
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-                reduceMotion={!!reduceMotion}
               />
             </motion.div>
           ))}
@@ -82,13 +81,11 @@ function FAQItem({
   answer,
   isOpen,
   onToggle,
-  reduceMotion,
 }: {
   question: string
   answer: string
   isOpen: boolean
   onToggle: () => void
-  reduceMotion: boolean
 }) {
   return (
     <div
@@ -110,7 +107,7 @@ function FAQItem({
         <span>{question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 0.25, ease: 'easeInOut' }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
           className="shrink-0"
         >
           <ChevronDown className={`h-5 w-5 transition-colors ${isOpen ? 'text-brand-yellow-dark' : 'text-neutral-400'}`} aria-hidden />
@@ -122,7 +119,7 @@ function FAQItem({
         aria-labelledby={`faq-question-${question.slice(0, 20)}`}
         initial={false}
         animate={{ height: isOpen ? 'auto' : 0 }}
-        transition={reduceMotion ? { duration: 0.01 } : { duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
         className="overflow-hidden"
       >
         <p className="px-5 pb-5 pt-1 text-neutral-500 text-sm leading-relaxed">{answer}</p>
